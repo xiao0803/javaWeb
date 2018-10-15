@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+    <link rel="stylesheet" type="text/css"	href="jquery-easyui-1.5/themes/default/easyui.css">
+    <!--引入CSS样式-->
+    <link rel="stylesheet" type="text/css" href="/jquery-easyui-1.5/themes/icon.css">
+	<!--Icon引入-->
+	<script language="JavaScript" type="text/javascript" src="jquery-easyui-1.5/jquery.min.js" charset="GBK"></script>
+	<!--(指定编码方式，防止出现乱码)引入EasyUI中使用的Jquery版本-->
+	<script language="JavaScript" type="text/javascript" src="jquery-easyui-1.5/jquery.easyui.min.js" charset="GBK"></script>
+	<!--(指定编码方式，防止出现乱码)引入EasyUi文件-->
+	<script language="JavaScript" type="text/javascript" src="jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+	<!--引入cookie插件-->
+	<script language="JavaScript" type="text/javascript" src="jsPlugin/jquery.cookie.js"></script>
+	<!--汉化-->
+	<script language="JavaScript" type="text/javascript" src="index.js"></script>
+    <title>EasyUI入门</title>
+</head>
+<body>
+	<h2>index page</h2>
+	<!-- cookie测试start -->
+	<form>
+		<input id="a1" type="input" value="" name="itemid"><br>
+		<input id="a2" type="input" value="" name="listprice"><br>
+		<input id="submit" type="button" value="提交" name="submit">
+		<input id="hollowWorldTest" type="button" value="HollowWorldTest" name="submit">
+	</form>
+	<!-- cookie测试end -->
+	
+	<!-- <p>Click the row to start editing.</p>
+	<div id="dlg" class="easyui-dialog" title="Basic Dialog" style="width:400px;height:200px;padding:10px" 
+	              data-options="iconCls:'icon-save',closed:true" >
+		<form id="fm" >
+			<input id="a1" type="input" value="" name="itemid"><br>
+			<input id="a2" type="input" value="" name="listprice"><br>
+			<input id="submit" type="button" value="提交" name="submit">
+			<input id="hollowWorldTest" type="button" value="HollowWorldTest" name="submit">
+		</form>
+	</div> -->
+	
+	<table id="dg" class="easyui-datagrid" title="Row Editing in DataGrid" style="width:700px;height:auto"
+			data-options="
+				iconCls: 'icon-edit',
+				singleSelect: true,
+				toolbar: '#tb',
+				method: 'get',
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'itemid',width:80">Item ID</th>
+				<th data-options="field:'listprice',width:80,align:'right'">List Price</th>
+				<th data-options="field:'attr1',width:250">Attribute</th>
+				<th data-options="field:'_operate',width:80,align:'center',formatter:formatOper">操作</th> 
+			</tr>
+		</thead>
+		<tbody>                            
+			<tr>                           
+				<td>Data 1</td>            
+				<td>Data 2</td>            
+				<td>Data 3</td>
+				<td>Data 4</td>                                 
+			</tr>                          
+			<tr>                           
+				<td>Data 1</td>            
+				<td>Data 2</td>            
+				<td>Data 3</td>
+				<td>Data 4</td>                                 
+			</tr>                          
+			<tr>                           
+				<td>Data 1</td>            
+				<td>Data 2</td>            
+				<td>Data 3</td>
+				<td>Data 4</td>                                 
+			</tr>                          
+			<tr>                           
+				<td>aaa</td>            
+				<td>bbb</td>            
+				<td>ccc</td>                                  
+			</tr>                          
+		</tbody> 
+	</table>
+	<script type="text/javascript">
+	function formatOper(val,row,index){  
+	    return '<a href="#" onclick="editUser('+index+')">修改</a>';  
+	}
+	function editUser(index){  
+	    $('#dg').datagrid('selectRow',index);// 关键在这里  
+	    var row = $('#dg').datagrid('getSelected');  
+	    if (row){  
+	        $('#dlg').dialog('open').dialog('setTitle','修改学生信息');  
+	        $('#fm').form('load',row);  
+	    }  
+	} 
+	</script>
+</body>
+</html>

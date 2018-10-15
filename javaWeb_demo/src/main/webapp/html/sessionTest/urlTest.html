@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+    <link rel="stylesheet" type="text/css"	href="/javaWeb_demo/jquery-easyui-1.5/themes/default/easyui.css">
+    <!--引入CSS样式-->
+    <link rel="stylesheet" type="text/css" href="/javaWeb_demo/jquery-easyui-1.5/themes/icon.css">
+	<!--Icon引入-->
+	<script language="JavaScript" type="text/javascript" src="/javaWeb_demo/jquery-easyui-1.5/jquery.min.js" charset="GBK"></script>
+	<!--(指定编码方式，防止出现乱码)引入EasyUI中使用的Jquery版本-->
+	<script language="JavaScript" type="text/javascript" src="/javaWeb_demo/jquery-easyui-1.5/jquery.easyui.min.js" charset="GBK"></script>
+	<!--(指定编码方式，防止出现乱码)引入EasyUi文件-->
+	<script language="JavaScript" type="text/javascript" src="/javaWeb_demo/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+	<!--引入cookie插件-->
+	<script language="JavaScript" type="text/javascript" src="/javaWeb_demo/jsPlugin/jquery.cookie.js"></script>
+	<!--汉化-->
+	<script language="JavaScript" type="text/javascript" src="/javaWeb_demo/html/sessionTest/urlTest.js"></script>
+    <title>URL重写测试页面</title>
+</head>
+<body>
+	<h2>URL重写测试页面</h2>
+	<!-- url重写的请求地址必须在servlet里面使用response.encodeURL("url地址")生成，直接在页面上写的url地址是做不到url重写实现session跟踪的 -->
+	<a href="/javaWeb_demo/html/sessionTest/cookieTest.html">URL重写测试</a>
+</body>
+</html>

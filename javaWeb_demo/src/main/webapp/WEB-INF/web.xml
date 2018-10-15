@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>javaWeb_demo</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- @@@@@@@@@@@@@@@@@ 监听器start @@@@@@@@@@@@@@@@@ -->
+	<!-- <listener>
+		<listener-class>com.servlet.listener.test.MyListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.servlet.listener.test.MyAttributeListener</listener-class>
+	</listener> -->
+	<!-- @@@@@@@@@@@@@@@@@ 监听器end @@@@@@@@@@@@@@@@@ -->
+
+	<!-- @@@@@@@@@@@@@@@@@ servlet start @@@@@@@@@@@@@@@@@ -->
+	<!-- http://localhost:8080/javaWeb_demo/cookieTestServlet -->
+	<servlet>
+		<servlet-name>cookieTestServlet</servlet-name>
+		<servlet-class>com.servlet.session.test.CookieTestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cookieTestServlet</servlet-name>
+		<url-pattern>/cookieTestServlet</url-pattern>
+	</servlet-mapping>
+	<!-- http://localhost:8080/javaWeb_demo/loginServlet -->
+	<servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>com.servlet.session.test.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/loginServlet</url-pattern>
+	</servlet-mapping>
+	<!-- http://localhost:8080/javaWeb_demo/filterTestServlet -->
+	<servlet>
+		<servlet-name>filterTestServlet</servlet-name>
+		<servlet-class>com.servlet.filter.test.FilterTestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>filterTestServlet</servlet-name>
+		<url-pattern>/filterTestServlet</url-pattern>
+	</servlet-mapping>
+	<!-- @@@@@@@@@@@@@@@@@ servlet end @@@@@@@@@@@@@@@@@ -->
+	
+	<!-- @@@@@@@@@@@@@@@@@ 过滤器start @@@@@@@@@@@@@@@@@ -->
+	<filter>
+		<filter-name>testFilter</filter-name>
+		<filter-class>com.servlet.filter.test.TestFilter</filter-class>
+		<init-param>
+			<param-name>configParamValueTest</param-name>
+			<param-value>aaa</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>testFilter</filter-name>
+		<url-pattern>/cookieTestServlet</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>UploadFilter</filter-name>
+		<filter-class>com.servlet.filter.test.requestWrapper.UploadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UploadFilter</filter-name>
+		<url-pattern>/jsp/filterTest/doUpload.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>CompressionFilter</filter-name>
+		<filter-class>com.servlet.filter.test.responseWrapper.CompressionFilter</filter-class>
+		<init-param>
+				<param-name>compressionThreshold</param-name>
+				<param-value>128</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CompressionFilter</filter-name>
+		<url-pattern>/login.html</url-pattern>
+	</filter-mapping>
+	<!-- @@@@@@@@@@@@@@@@@ 过滤器end @@@@@@@@@@@@@@@@@ -->
+
+</web-app>

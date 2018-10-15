@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+    <link rel="stylesheet" type="text/css"	href="jquery-easyui-1.5/themes/default/easyui.css">
+    <!--引入CSS样式-->
+    <link rel="stylesheet" type="text/css" href="/jquery-easyui-1.5/themes/icon.css">
+	<!--Icon引入-->
+	<script language="JavaScript" type="text/javascript" src="jquery-easyui-1.5/jquery.min.js" charset="GBK"></script>
+	<!--(指定编码方式，防止出现乱码)引入EasyUI中使用的Jquery版本-->
+	<script language="JavaScript" type="text/javascript" src="jquery-easyui-1.5/jquery.easyui.min.js" charset="GBK"></script>
+	<!--(指定编码方式，防止出现乱码)引入EasyUi文件-->
+	<script language="JavaScript" type="text/javascript" src="jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+	<!--引入cookie插件-->
+	<script language="JavaScript" type="text/javascript" src="jsPlugin/jquery.cookie.js"></script>
+	<!--汉化-->
+	<script language="JavaScript" type="text/javascript" src="login.js"></script>
+    <title>登录页面</title>
+</head>
+<body>
+	<h2>登录页面</h2>
+	<form action="/javaWeb_demo/loginServlet" method="POST">
+		用户名:<br>
+		<input id="user_name" type="input" value="" name="user_name"><br>
+		密码:<br>
+		<input id="user_password" type="input" value="" name="user_password"><br>
+		<input id="submit" type="submit" value="提交" name="submit">
+	</form>
+</body>
+</html>

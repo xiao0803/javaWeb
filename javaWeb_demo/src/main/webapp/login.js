@@ -10,7 +10,7 @@ login = function() {
 	/*
 	 * ********************************  *********************************
 	 */
-	// 
+	// git-merge-test
 	this.setCookie = function(name, value) {
 		
 		var strcookie1 = $.cookie('test_cookie4');

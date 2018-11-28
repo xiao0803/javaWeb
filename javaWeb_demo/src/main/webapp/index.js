@@ -9,7 +9,7 @@ Index = function() {
 		// localStorage.setItem("is_refund", "1");
 		this.bindMethod();
 		//git-featureV1-test
-		
+    //git-featureV2-test
 	}
 
 	/*

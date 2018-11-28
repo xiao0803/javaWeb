@@ -8,6 +8,8 @@ Index = function() {
 		// 是否同意退订；默认为“同意”
 		// localStorage.setItem("is_refund", "1");
 		this.bindMethod();
+		//git-featureV1-test
+		
 	}
 
 	/*

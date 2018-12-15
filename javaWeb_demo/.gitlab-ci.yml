@@ -1,0 +1,45 @@
+stages:
+  - dev_build
+  - dev_deploy
+
+# 测试环境
+构测试Jar包:
+  stage: dev_build
+  script:
+    - mvn clean package -Dmaven.test.skip -T 1C
+    - mkdir -p /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+    - cp gdt-marketing-server/target/gdt-marketing-server.jar /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+    - cp gdt-marketing-schedule/target/gdt-marketing-schedule.jar /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+    - cp gdt-package-processor/target/gdt-package-processor.jar /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+    - cp gdt-marketing-auth-server/target/gdt-marketing-auth-server.jar /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+  only:
+    - dev
+    - master
+    - /^feature.*$/
+  tags:
+    - runner-102-51
+
+
+部署测试marketing-server:
+  stage: dev_deploy
+  script:
+    - ansible-playbook deploy/deploy_marketing_server.yml -i deploy/hosts --extra-vars "host=dev" --extra-vars "server=gdt-marketing-server" --extra-vars "file=/home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/gdt-marketing-server.jar"
+  when: manual
+  only:
+      - dev
+      - master
+      - /^feature.*$/
+  tags:
+    - runner-102-51
+
+部署测试marketing-schedule:
+  stage: dev_deploy
+  script:
+    - ansible-playbook deploy/deploy_marketing_server.yml -i deploy/hosts --extra-vars "host=dev" --extra-vars "server=gdt-marketing-schedule" --extra-vars "file=/home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/gdt-marketing-schedule.jar"
+  when: manual
+  only:
+    - dev
+    - master
+    - /^feature.*$/
+  tags:
+    - runner-102-51

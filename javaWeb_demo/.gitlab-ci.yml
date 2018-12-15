@@ -1,0 +1,101 @@
+stages:
+- dev_build_ceshi
+- dev_build_szgl
+- pro_build
+- code_verify
+- deploy
+
+代码提交检测:
+  stage: code_verify
+  script:
+    - mvn --batch-mode verify -Dmaven.test.skip sonar:sonar -Dsonar.host.url=http://sonar.ad.jpushoa.com -Dsonar.login=ce8458ba7223aab37bd887b420f3dda6854b266e -Dsonar.analysis.mode=preview -Dsonar.gitlab.project_id=$CI_PROJECT_ID -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME
+  allow_failure: true
+  tags:
+    - runner-102-51
+
+代码质量检测:
+  stage: code_verify
+  script:
+    - mvn --batch-mode verify -Dmaven.test.skip sonar:sonar -Dsonar.host.url=http://sonar.ad.jpushoa.com -Dsonar.login=ce8458ba7223aab37bd887b420f3dda6854b266e
+  allow_failure: true
+  tags:
+    - runner-102-51
+
+# 开发和测试环境
+
+构建观澜测试环境Jar包:
+  stage: dev_build_szgl
+  script:
+    - mvn clean package -Dmaven.test.skip -T 1C
+    - mkdir -p /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+    - cp ad-core-server/target/ad-core-server-v2.jar /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+  only:
+    - dev
+    - master
+    - /^feature.*$/
+  tags:
+    - szdz-ad-runner
+
+构建测试环境Jar包:
+  stage: dev_build_ceshi
+  script:
+    - mvn clean package -Dmaven.test.skip -T 1C
+    - mkdir -p /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+    - cp ad-core-server/target/ad-core-server-v2.jar /home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/
+  only:
+    - dev
+    - master
+    - /^feature.*$/
+  tags:
+    - runner-102-51
+
+部署观澜环境:
+  stage: deploy
+  script:
+    - mvn clean package -Dmaven.test.skip -T 1C
+    - ansible-playbook deploy/deploy.yml -i deploy/hosts --extra-vars "host=szgl" --extra-vars "server=ad-core-server-v2" --extra-vars "file=../ad-core-server/target/ad-core-server-v2.jar"
+  only:
+    - dev
+    - master
+    - /^feature.*$/
+  when: manual
+  tags:
+    - szdz-ad-runner
+
+部署测试:
+  stage: deploy
+  script:
+    - ansible-playbook deploy/deploy.yml -i deploy/hosts --extra-vars "host=dev" --extra-vars "server=ad-core-server-v2" --extra-vars "file=/home/gitlab-runner/artifacts-dev/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF/ad-core-server-v2.jar"
+  only:
+    - dev
+    - master
+    - /^feature.*$/
+  when: manual
+  tags:
+    - runner-102-51
+
+
+# 生产环境
+
+构建生产环境Jar包:
+  stage: pro_build
+  script:
+    - mvn clean package -Dmaven.test.skip -T 1C
+    - mkdir -p /home/gitlab-runner/artifacts/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_TAG/
+    - cp ad-core-server/target/ad-core-server-v2.jar /home/gitlab-runner/artifacts/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_TAG/
+  only:
+    - tags
+  tags:
+    - runner-102-51
+
+
+部署生产AD-CORE-SERVER-V2:
+  stage: deploy
+  script:
+    - ansible-playbook deploy/deploy.yml -i deploy/hosts --extra-vars "host=product_ad_core_server" --extra-vars "server=ad-core-server-v2" --extra-vars "file=/home/gitlab-runner/artifacts/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_TAG/ad-core-server-v2.jar"
+  when: manual
+  only:
+      - tags
+  tags:
+    - runner-102-51
+    

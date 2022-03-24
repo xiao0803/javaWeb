@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--谷歌手机测试正常显示-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>小区搜索</title>
+<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+<script type="text/javascript" src="../../js/jquery-1.10.2.min.js"></script>
+<!-- 弹框 -->
+<link rel="stylesheet" type="text/css" href="../../js/alert/css/alerts.css" />
+<script type="text/javascript" src="../../js/alert/alerts.js"></script>
+<!-- 弹框2 -->
+<link rel="stylesheet" type="text/css" href="../../js/alert_new/common.css" />
+<script type="text/javascript" src="../../js/alert_new/alertPopShow.js"></script>
+<!-- 公共js -->
+<script type="text/javascript" src="../../js/common.js"></script>
+<!-- js桥，h5页面js与mobile端的桥梁 -->
+<script type="text/javascript" src="/web-cust/mobile/js/dsBridge.js"></script>
+<!-- 底部加载 -->
+<link rel="stylesheet" type="text/css" href="../../js/dropload/dropload.css" />
+<script type="text/javascript" src="../../js/dropload/dropload.js"></script>
+<!-- 当前页面js -->
+<script type="text/javascript" src="../../h5/myHouse/js/serviceList.js"></script>
+</head>
+<body>
+	<!--头部 begin-->
+	<div class="header bb_bf" > 
+	  	<span class="f17">选择小区</span> 
+		<a id="back" class="left_icon"></a>
+	  	<div class="clear"></div>
+	</div>
+	<div class="search" style="margin-top: 45px;">
+	   <div style="width:95%; margin:0 auto; position: relative;">
+	   <input name="search_service" type="text" class="search_put"  id="search_service" style="position: absolute; " placeholder="搜索" />
+	   <a style="position: absolute; z-index: 1; left:10px; top:10px"><img src="../../../images/icon_search@2x.png" width="18" height="18"  alt="" /></a>
+	   </div>
+	</div>
+	
+	<div id="dropload"><div class="white_bg3" id="serviceList"></div></div>
+	
+</body>
+</html>

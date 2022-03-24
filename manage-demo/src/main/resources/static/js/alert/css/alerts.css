@@ -1,0 +1,132 @@
+/**************  alert插件 ****************/
+
+#popup_container {
+	min-width: 300px;
+	font-size: 16px;
+	background: #fff;
+	max-width: 600px;
+	color: #000;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 0 10px 0 #999;
+	-webkit-animation: showSweetAlert 0.3s;
+	-moz-animation: showSweetAlert 0.3s;
+	animation: showSweetAlert 0.3s;
+}
+#popup_title {
+	border: #fff 1px solid;
+	border-bottom: #ddd 1px solid;
+	font-weight: bold;
+	font-size: 16px;
+	background: #f4f4f4;
+	cursor: default;
+	color: #666;
+	line-height: 2em;
+	margin: 0;
+	border-radius: 5px 5px 0 0;
+	text-align: left
+}
+#popup_content {
+	padding: 1.1em;
+}
+#popup_message {
+	text-align: center;
+	padding: 0 0 1em 0;
+}
+#popup_panel {
+	text-align: center
+}
+#popup_prompt {
+	margin: 1em 0 0 0;
+	border: solid 1px #ddd;
+	line-height: 20px;
+	padding: 4px;
+	border-radius: 3px;
+}
+#popup_ok {
+	background: #c72c27;
+	border: solid 1px #c72c27;
+	color: #fff;
+	border-radius: 3px;
+	height: 2em;
+	line-height: 2em;
+	padding: 0 2em;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
+#popup_ok:hover {
+	background: #dd3c36;
+	border: solid 1px #dd3c36;
+}
+#popup_cancel {
+	background: #fff;
+	border: solid 1px #ddd;
+	color: #999;
+	border-radius: 3px;
+	height: 2em;
+	line-height: 2em;
+	padding: 0 2em;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 16px;
+	margin-left: 10px;
+}
+#popup_cancel:hover {
+	background: #f4f4f4;
+	border: solid 1px #ddd;
+}
+@-webkit-keyframes showSweetAlert {
+	0% {
+		transform: scale(0.7);
+		-webkit-transform: scale(0.7);
+	}
+	45% {
+		transform: scale(1.05);
+		-webkit-transform: scale(1.05);
+	}
+	80% {
+		transform: scale(0.95);
+		-webkit-tranform: scale(0.95);
+	}
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+}
+@-moz-keyframes showSweetAlert {
+	0% {
+		transform: scale(0.7);
+		-webkit-transform: scale(0.7);
+	}
+	45% {
+		transform: scale(1.05);
+		-webkit-transform: scale(1.05);
+	}
+	80% {
+		transform: scale(0.95);
+		-webkit-tranform: scale(0.95);
+	}
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+}
+@keyframes showSweetAlert {
+	0% {
+		transform: scale(0.7);
+		-webkit-transform: scale(0.7);
+	}
+	45% {
+		transform: scale(1.05);
+		-webkit-transform: scale(1.05);
+	}
+	80% {
+		transform: scale(0.95);
+		-webkit-tranform: scale(0.95);
+	}
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+}

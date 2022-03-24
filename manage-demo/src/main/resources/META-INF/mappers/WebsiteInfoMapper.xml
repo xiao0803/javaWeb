@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.WebsiteInfoMapper">
+
+	<insert id="addWebsiteInfo" useGeneratedKeys="true" keyProperty="params.id">
+		INSERT INTO `t_website_info` (
+		  `website_name`,
+		  `website_url`,
+		  `login_name`,
+		  `login_pwd`
+		)
+		VALUES
+		  (
+			#{params.websiteName},
+			#{params.websiteUrl},
+			#{params.loginName},
+			#{params.loginPwd}
+		  )
+	</insert>
+
+	<update id="updateWebsiteInfo">
+		UPDATE t_website_info
+		SET update_time = NOW()
+		<if test="params.modificatorId != null" >
+			,modificator_id = #{params.modificatorId}
+		</if>
+		<if test="params.backupsFlag != null" >
+			,backups_flag = #{params.backupsFlag}
+		</if>
+		<if test="params.statusValue != null" >
+			,status_value = #{params.statusValue}
+		</if>
+		<if test="params.websiteName != null" >
+			,website_name = #{params.websiteName}
+		</if>
+		<if test="params.websiteUrl != null" >
+			,website_url = #{params.websiteUrl}
+		</if>
+		<if test="params.loginName != null" >
+			,login_name = #{params.loginName}
+		</if>
+		<if test="params.loginPwd != null" >
+			,login_pwd = #{params.loginPwd}
+		</if>
+		WHERE id = #{params.id}
+	</update>
+
+	<select id="queryWebsiteInfoList" resultType="com.example.entity.WebsiteInfo">
+		SELECT
+			id,
+			website_name,
+			website_url,
+			login_name,
+			login_pwd,
+			backups_flag,
+			status_value,
+			modificator_id,
+			update_time,
+			creator_id,
+			create_time
+		FROM t_website_info WHERE 1 = 1
+		<if test="params.statusValue != null" >
+			AND status_value LIKE #{params.statusValue}
+		</if>
+		<if test="params.websiteName != null" >
+			AND website_name LIKE #{params.websiteName}
+		</if>
+	</select>
+	
+  
+</mapper>

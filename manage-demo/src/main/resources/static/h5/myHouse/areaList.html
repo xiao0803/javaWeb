@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"></meta>
+<meta name="viewport" content="width=device-width, user-scalable=no" ></meta>
+<meta name="app-mobile-web-app-capable" content="yes">
+<title>城市搜索</title>
+<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+<script type="text/javascript" src="../../../js/jquery-1.10.2.min.js"></script>
+<!-- 弹框 -->
+<link rel="stylesheet" type="text/css" href="../../../js/alert/css/alerts.css" />
+<script type="text/javascript" src="../../../js/alert/alerts.js"></script>
+<!-- 弹框2 -->
+<link rel="stylesheet" type="text/css" href="../../../js/alert_new/common.css" />
+<script type="text/javascript" src="../../../js/alert_new/alertPopShow.js"></script>
+<!-- 公共js -->
+<script type="text/javascript" src="../../../js/common.js"></script>
+<script type="text/javascript" src="../../../js/choose-city.js"></script>
+<!-- js桥，h5页面js与mobile端的桥梁 -->
+<script type="text/javascript" src="/web-cust/mobile/js/dsBridge.js"></script>
+<!-- 底部加载 -->
+<link rel="stylesheet" type="text/css" href="../../../js/dropload/dropload.css" />
+<script type="text/javascript" src="../../../js/dropload/dropload.js"></script>
+<!-- 当前页面js -->
+<script type="text/javascript" src="../../../proprietor/mine/myHouse/js/areaList.js?v=1.0.1"></script>
+<style>
+.city-sidebar-container {position: fixed;top: 50%;right: 0;overflow: visible;-webkit-user-select: none;user-select: none;cursor: default;}
+.city-sidebar-container ul {padding: 0 5px;list-style: none;font-size: 12px;line-height: 16px;color: #ff7e00;}
+.city-sidebar-container li {text-align: center;}
+.city-sidebar-container .current-char {display: none;position: fixed;top: 0;left: 0;margin-left: -80px;margin-top: -20px;height: 40px;width: 40px;line-height: 40px;font-size: 32px;text-align: center;color: #999;}
+
+</style>
+</head>
+<body>
+<!--头部 begin-->
+	<div class="header bb_bf" > 
+	  	<span class="f17">选择城市</span> 
+		<a id="back" class="left_icon"></a>
+	  	<div class="clear"></div>
+	</div>
+	
+	<div id="dropload" style="position:fixed;bottom:0;top:44px;left:0;right:0;overflow:auto;">
+	   <div class="search" id="search">
+		   <div style="width:95%; margin:0 auto; position:relative;">
+		  		<input name="search_area" type="text" class="search_put"  id="search_area" placeholder="搜索"/>
+		   		<a style="position: absolute; z-index: 1; left:10px; top:10px;"><img src="../../../images/icon_search@2x.png" width="18" height="18"  alt="" /></a>
+		   </div>
+	   </div>
+	   <div class="white_bg3" id="infoList"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+    <settings>
+        <!-- changes from the defaults -->
+        <setting name="lazyLoadingEnabled" value="false" />
+    </settings>
+ 
+    <mappers>
+        <!--在application.yml配置文件中已经配置的*Mapper.xml,所以这里不需要重复添加了-->
+        <!--<mapper resource="mapper/UserMapper.xml" />-->
+    </mappers>
+ 
+</configuration>

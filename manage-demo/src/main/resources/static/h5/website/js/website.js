@@ -1,4 +1,4 @@
-MyHouse = function () {
+Website = function () {
     //mobile接口对象
     this.bridge = null;
     //当前服务中心ID
@@ -13,11 +13,9 @@ MyHouse = function () {
     this.startNum = 1;
     //每页大小
     this.pageSize = 10;
-    //1表示已认证页面2表示待认证页面3表示已驳回页面
-    this.state = null;
 
     this.init = function () {
-        this.initQueryMyhouse();
+        this.initQueryWebsite();
         //初始化事件
         this.bindMethod();
     }
@@ -27,15 +25,15 @@ MyHouse = function () {
     */
 
     //初始化已认证信息
-    this.initQueryMyhouse = function () {
+    this.initQueryWebsite = function () {
         $('#dropload').dropload({
             scrollArea: window,
             loadDownFn: function (me) {
                 var url = '/api/websiteInfo/queryWebsiteInfoList';
                 var param = JSON.stringify({
                     "websiteName":$("#search_service").val(),
-                    "pageNum": myHouse.startNum,
-                    "pageSize": myHouse.pageSize
+                    "pageNum": website.startNum,
+                    "pageSize": website.pageSize
                 })
                 var successfn = function (retResult) {
                     var tempHtml = [];
@@ -53,8 +51,8 @@ MyHouse = function () {
                             tempHtml.push('<div class="bgFFF house_plr15"><p class="house_num">'
                                 + processUndefined(tmpObj.websiteName)
                                 + '<span class="house_delete_ele">'
-                                + '<a onclick="myHouse.deleteWebsite(this)" itemId="'+ processUndefined(tmpObj.id)+'"><img src="../../../images/delete.png" width="24" height="24" /></a>'
-                                + '<a onclick="myHouse.goEditWebsitePage(this)" itemId="'+ processUndefined(tmpObj.id)+'"><img src="../../../images/btn_new@2x.png" width="24" height="24" /></a>'
+                                + '<a onclick="website.deleteWebsite(this)" itemId="'+ processUndefined(tmpObj.id)+'"><img src="../../../images/delete.png" width="24" height="24" /></a>'
+                                + '<a onclick="website.goEditWebsitePage(this)" itemId="'+ processUndefined(tmpObj.id)+'"><img src="../../../images/btn_new@2x.png" width="24" height="24" /></a>'
                                 + '</span></p>'
                                 + '<p class="detail_address">登录名：' + processUndefined(tmpObj.loginName) + '</p>'
                                 + '<p class="detail_address">登录密码：' + processUndefined(tmpObj.loginPwd) + '</p>'
@@ -63,8 +61,8 @@ MyHouse = function () {
                         }
 
                         //当最后查询条数不足设置页面显示的条数时，无需再加载
-                        if (dataList.length == myHouse.pageSize) {
-                            myHouse.startNum = myHouse.startNum + 10;
+                        if (dataList.length == website.pageSize) {
+                            website.startNum = website.startNum + 1;
                         } else {
                             // 无更多数据
                             me.dataType = "NO_MORE";
@@ -84,7 +82,7 @@ MyHouse = function () {
                         // 无数据
                         me.noData();
                     }
-                    $("#myHouseInfo").append(tempHtml.join(''));
+                    $("#websiteInfo").append(tempHtml.join(''));
                     me.resetload();
 
                 }
@@ -108,8 +106,8 @@ MyHouse = function () {
     this.bindMethod = function () {
         //返回上级页面
         $("#back").unbind().on("click", function () {
-            window.location.href = "/h5/myHouse/my-house.html";
-            //myHouse.bridge.call("backToMain", {msg: "返回主页"});
+            window.location.href = "/h5/website/website.html";
+            //website.bridge.call("backToMain", {msg: "返回主页"});
         });
 
         //搜索查询
@@ -117,15 +115,15 @@ MyHouse = function () {
         $("#search_service").unbind().on("change",function(){
             $(".dropload-load").remove();
             $(".dropload-down").remove();
-            myHouse.startNum = 0;
-            $("#myHouseInfo").html('');
-            myHouse.initQueryMyhouse();
+            website.startNum = 0;
+            $("#websiteInfo").html('');
+            website.initQueryWebsite();
         });
 
         //新增页面
         $("#goAddPage").unbind().on("click", function () {
             sessionStorage.setItem("websiteInfoOperateType", "1");
-            window.location.href = "/h5/myHouse/edit-website.html";
+            window.location.href = "/h5/website/edit-website.html";
         });
 
     }
@@ -134,7 +132,7 @@ MyHouse = function () {
     this.goEditWebsitePage = function (element) {
         sessionStorage.setItem("websiteInfoOperateType", "2");
         sessionStorage.setItem("websiteInfoId", $(element).attr("itemId"));
-        window.location.href = "/h5/myHouse/edit-website.html";
+        window.location.href = "/h5/website/edit-website.html";
     }
 
     //删除
@@ -147,8 +145,8 @@ MyHouse = function () {
             if (code == "00000000") {
                 webToast(retResult.respMsg,"middle");
                 setTimeout(function(){
-                    window.location.href = "/h5/myHouse/my-house.html";
-                },3000);
+                    window.location.href = "/h5/website/website.html";
+                },1000);
             } else {
                 webToast("删除失败！", "middle");
             }
@@ -173,20 +171,20 @@ MyHouse = function () {
     */
 }
 
-var myHouse = new MyHouse();
+var website = new Website();
 $(document).ready(function () {
     // 初始化
-    myHouse.init();
+    website.init();
 
 });
 
-myHouse.Url = {};
-myHouse.Url.getpar = function () {
+website.Url = {};
+website.Url.getpar = function () {
     var url = location.href;
     return url.substring(url.indexOf("?") + 1, url.length);
 }
-myHouse.Url.getParams = function (paras) {
-    var paraString = myHouse.Url.getpar().split("&");
+website.Url.getParams = function (paras) {
+    var paraString = website.Url.getpar().split("&");
     var paraObj = {}
     for (i = 0; j = paraString[i]; i++) {
         paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j

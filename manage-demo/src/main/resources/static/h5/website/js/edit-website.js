@@ -1,4 +1,4 @@
-HouseIdentification = function(){
+EditWebsite = function(){
     this.websiteInfoOperateType = null;
     this.websiteInfoId = null;
 	this.init=function(){
@@ -6,7 +6,9 @@ HouseIdentification = function(){
         this.websiteInfoId = sessionStorage.getItem("websiteInfoId");
         $("#itemId").val(this.websiteInfoId);
         // 根据ID查询信息
-        this.queryWebsiteInfoById(this.websiteInfoId);
+        if(this.websiteInfoOperateType == 2){ // 编辑操作才需要进行回填
+            this.queryWebsiteInfoById(this.websiteInfoId);
+        }
 		//绑定事件
 		this.bindMethod();
 	}
@@ -22,6 +24,11 @@ HouseIdentification = function(){
                 $("#websiteUrl").val(dataInfo.websiteUrl);
                 $("#loginName").val(dataInfo.loginName);
                 $("#loginPwd").val(dataInfo.loginPwd);
+                $("#terminalType").val(dataInfo.terminalType);
+                $("#category1").val(dataInfo.category1);
+                $("#category2").val(dataInfo.category2);
+                $("#otherInfo").val(dataInfo.otherInfo);
+                $("#remark").val(dataInfo.remark);
             } else {
                 webToast("操作失败！", "middle");
             }
@@ -52,13 +59,19 @@ HouseIdentification = function(){
         obj["websiteUrl"] = $("#websiteUrl").val();
         obj["loginName"] = $("#loginName").val();
         obj["loginPwd"] = $("#loginPwd").val();
+        obj["terminalType"] = $("#terminalType").val();
+        obj["category1"] = $("#category1").val();
+        obj["category2"] = $("#category2").val();
+        obj["otherInfo"] = $("#otherInfo").val();
+        obj["remark"] = $("#remark").val();
+
         var successfn = function (retResult) {
             var code = retResult.respCode;
             if (code == "00000000") {
                 webToast(retResult.respMsg,"middle");
                 setTimeout(function(){
-                    window.location.href = "/h5/myHouse/my-house.html";
-                },3000);
+                    window.location.href = "/h5/website/website.html";
+                },1000);
             } else {
                 webToast("操作失败！", "middle");
             }
@@ -98,7 +111,7 @@ HouseIdentification = function(){
 	this.bindMethod=function(){
 		//返回上页
 		$("#back").unbind().on("click",function(){
-            window.location.href = "/h5/myHouse/my-house.html";
+            window.location.href = "/h5/website/website.html";
 		});
 
 		// 提交
@@ -112,6 +125,6 @@ HouseIdentification = function(){
 
 var editWebsite;
 $(function(){	
-	editWebsite = new HouseIdentification();
+	editWebsite = new EditWebsite();
 	editWebsite.init();
 });

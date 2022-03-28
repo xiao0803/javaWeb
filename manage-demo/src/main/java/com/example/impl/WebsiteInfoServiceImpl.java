@@ -24,6 +24,7 @@ public class WebsiteInfoServiceImpl {
     }
 
     public int updateWebsiteInfo(WebsiteInfo params){
+        params.setBackupsFlag(2);
         return websiteInfoMapper.updateWebsiteInfo(params);
     }
 

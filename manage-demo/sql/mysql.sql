@@ -9,7 +9,7 @@ CREATE TABLE `t_website_info` (
   `category2` VARCHAR(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '网站二级分类:政府平台、版本控制等',
   `other_info` VARCHAR(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '其它信息',
   `remark` VARCHAR(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
-  `backups_flag` TINYINT(2) DEFAULT '1' COMMENT '是否备份；1-否、2-是',
+  `backups_flag` TINYINT(2) DEFAULT '1' COMMENT '是否备份；1-新增、2-被修改、3-已备份',
   `status_value` TINYINT(2) DEFAULT '1' COMMENT '状态；1-正常、2-删除',
   `modificator_id` VARCHAR(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '修改者ID',
   `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
